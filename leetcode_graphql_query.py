@@ -7,20 +7,10 @@ query = """
 query questionOfToday {
   activeDailyCodingChallengeQuestion {
     date
-    userStatus
-    link
     question {
-      acRate
       difficulty
-      freqBar
-      frontendQuestionId: questionFrontendId
-      isFavor
-      paidOnly: isPaidOnly
       status
       title
-      titleSlug
-      hasVideoSolution
-      hasSolution
       topicTags {
         name
         id
@@ -42,15 +32,21 @@ if response.status_code == 200:
     result = response.json()
     question_data = result['data']['activeDailyCodingChallengeQuestion']
 
-    print("Question of the Day:")
-    print("Date:", question_data['date'])
-    print("User Status:", question_data['userStatus'])
-    print("Link:", question_data['link'])
+    # Get info
     question_details = question_data['question']
-    print("Title:", question_details['title'])
-    print("Difficulty:", question_details['difficulty'])
-    print("Topic Tags:", [tag['name'] for tag in question_details['topicTags']])
+    file1 = open('daily_question.txt', 'w')
+    date = question_data['date']
+    title = question_details['title']
+    difficulty = question_details['difficulty']
+    topic_tags = [tag['name'] for tag in question_details['topicTags']]
     
-    webbrowser.open(question_data['link'])
+    # print to file
+    L = [f'Date: {date}\n', 
+         f'Title: {title} \n', 
+         f'Difficulty: {difficulty} \n',
+         f'Topic Tags: {topic_tags} \n']
+    
+    print(L)
+    file1.writelines(L)
 else:
     print("Failed to fetch the question of the day.")
