@@ -1,4 +1,4 @@
-Date: 2024-04-04
-Title: Maximum Nesting Depth of the Parentheses 
-Difficulty: Easy 
-Topic Tags: ['String', 'Stack'] 
+Date: 2024-05-17
+Title: Delete Leaves With a Given Value 
+Difficulty: Medium 
+Topic Tags: ['Tree', 'Depth-First Search', 'Binary Tree'] 
